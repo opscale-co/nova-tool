@@ -7,8 +7,8 @@
     ],
     "repositories": [
         {
-            "type": "path",
-            "url": "../laravel-nova"
+            "type": "composer",
+            "url": "https://nova.laravel.com"
         }
     ],
     "homepage": "https://github.com/:vendor/:package_name",
@@ -21,13 +21,9 @@
         }
     ],
     "require": {
-        "php": ">=8.0",
-        "laravel/nova": "*",
-        "ext-readline": "*"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^3.6",
-        "phpunit/phpunit": "7.1"
+        "php": ">=8.3",
+        "ext-readline": "*",
+        "nova-kit/nova-packages-tool": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -50,5 +46,9 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "require-dev": {
+        "phpunit/phpunit": "^10.5",
+        "tightenco/duster": "^2.7"
+    }
 }
