@@ -142,20 +142,20 @@ function replaceForAllOtherOSes(): array
 }
 
 $gitName = run('git config user.name');
-$authorName = ask('Author name', $gitName);
+$authorName = ask('Author name', 'Opscale');
 
 $gitEmail = run('git config user.email');
-$authorEmail = ask('Author email', $gitEmail);
+$authorEmail = ask('Author email', 'development@opscale.co');
 
 $usernameGuess = explode(':', run('git config remote.origin.url'))[1];
 $usernameGuess = dirname($usernameGuess);
 $usernameGuess = basename($usernameGuess);
-$authorUsername = ask('Author username', $usernameGuess);
+$authorUsername = ask('Author username', 'opscale-co');
 
-$vendorName = ask('Vendor name', $authorUsername);
+$vendorName = ask('Vendor name', 'opscale-co');
 $vendorSlug = slugify($vendorName);
 $vendorNamespace = str_replace('-', '', ucwords($vendorName));
-$vendorNamespace = ask('Vendor namespace', $vendorNamespace);
+$vendorNamespace = ask('Vendor namespace', 'Opscale');
 
 $currentDirectory = getcwd();
 $folderName = basename($currentDirectory);
@@ -170,21 +170,12 @@ $className = ask('Class name', $className);
 $variableName = lcfirst($className);
 $description = ask('Package description', "This is my package {$packageSlug}");
 
-$useLaravelPint = confirm('Enable Laravel Pint?', true);
-$useDependabot = confirm('Enable Dependabot?', true);
-$useUpdateChangelogWorkflow = confirm('Use automatic changelog updater workflow?', true);
-
 writeln('------');
 writeln("Author     : {$authorName} ({$authorUsername}, {$authorEmail})");
 writeln("Vendor     : {$vendorName} ({$vendorSlug})");
 writeln("Package    : {$packageSlug} <{$description}>");
 writeln("Namespace  : {$vendorNamespace}\\{$className}");
 writeln("Class name : {$className}");
-writeln('---');
-writeln('Packages & Utilities');
-writeln('Use Laravel/Pint       : '.($useLaravelPint ? 'yes' : 'no'));
-writeln('Use Dependabot       : '.($useDependabot ? 'yes' : 'no'));
-writeln('Use Auto-Changelog   : '.($useUpdateChangelogWorkflow ? 'yes' : 'no'));
 writeln('------');
 
 writeln('This script will replace the above values in all relevant files in the project directory.');
@@ -217,20 +208,8 @@ foreach ($files as $file) {
     };
 }
 
-if (! $useLaravelPint) {
-    safeUnlink(__DIR__.'/.github/workflows/fix-php-code-style-issues.yml');
-    safeUnlink(__DIR__.'/pint.json');
-}
+confirm('Install dependencies and execute setup?') && run('composer install && npm install && npx husky install && vendor/bin/duster fix');
 
-if (! $useDependabot) {
-    safeUnlink(__DIR__.'/.github/dependabot.yml');
-    safeUnlink(__DIR__.'/.github/workflows/dependabot-auto-merge.yml');
-}
-
-if (! $useUpdateChangelogWorkflow) {
-    safeUnlink(__DIR__.'/.github/workflows/update-changelog.yml');
-}
-
-confirm('Execute `composer install` and `npm install` ?') && run('composer install && npm install');
+writeln('Remember to edit README file.');
 
 confirm('Let this script delete itself?', true) && unlink(__FILE__);

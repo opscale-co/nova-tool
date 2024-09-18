@@ -9,9 +9,6 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "check-format": "prettier --list-different 'resources/**/*.{css,js,vue}'",
-        "format": "prettier --write 'resources/**/*.{css,js,vue}'",
-        "lint": "eslint resources/js --fix --ext js,vue",
         "prepare": "husky install"
     },
     "devDependencies": {

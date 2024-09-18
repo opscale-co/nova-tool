@@ -3,9 +3,9 @@
 namespace :namespace_vendor\:namespace_tool_name;
 
 use Laravel\Nova\Nova;
-use Laravel\Nova\Tool as BaseTool;
+use Laravel\Nova\Tool;
 
-class Tool extends BaseTool
+class :namespace_tool_nameTool extends Tool
 {
     /**
      * Perform any tasks that need to happen when the tool is booted.

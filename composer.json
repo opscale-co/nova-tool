@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": ">=8.3",
+        "php": ">=8.2",
         "ext-readline": "*",
         "nova-kit/nova-packages-tool": "^1.0"
     },
@@ -38,7 +38,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                ":namespace_vendor\\:namespace_tool_name\\ToolServiceProvider"
+                ":namespace_vendor\\:namespace_tool_name\\:namespace_tool_nameToolServiceProvider"
             ]
         }
     },

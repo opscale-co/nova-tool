@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use :namespace_vendor\:namespace_tool_name\Http\Middleware\Authorize;
 
-class ToolServiceProvider extends ServiceProvider
+class :namespace_tool_nameToolServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
