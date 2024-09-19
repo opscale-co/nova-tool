@@ -60,11 +60,11 @@ Now you're ready to develop your package inside a Nova app.
 
 <!--/delete-->
 
-# :package_description
+# Description
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor/:package_name.svg?style=flat-square)](https://packagist.org/packages/:vendor/:package_name)
 
-This is where your description should go. Try and limit it to a paragraph or two.
+:package_description
 
 Add a screenshot of the tool here.
 
